@@ -11,6 +11,7 @@ export default function ObjectList() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editingObject, setEditingObject] = useState<ObjectType | null>(null);
   const [search, setSearch] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   // Filter objects based on search input
   const filteredObjects = objects.filter(
@@ -21,16 +22,28 @@ export default function ObjectList() {
 
   return (
     <div className='container'>
-      {/* Search Input */}
+      {/* Search Input with auto-complete */}
       <input
         type='text'
         placeholder='Search objects...'
         value={search}
         onChange={(e) => {
           setSearch(e.target.value);
+          setShowSuggestions(e.target.value.length > 0); // Show dropdown if input is not empt
         }}
         className='input'
       />
+
+      {/* Autocomplete Suggestions Dropdown */}
+      {showSuggestions && filteredObjects.length > 0 && (
+        <ul>
+          {filteredObjects.map((obj) => (
+            <li key={obj.id}>
+              {obj.name} - {obj.type}
+            </li>
+          ))}
+        </ul>
+      )}
 
       {/* Object List */}
       {filteredObjects.length > 0 ? (

@@ -1,25 +1,56 @@
-import { useState } from "react";
-import { useObjectContext } from "../context/ObjectContext";
+import { useState, useEffect } from "react";
+import { useObjectContext, ObjectType } from "../context/ObjectContext";
 
-export default function ObjectForm() {
-  const { addObject } = useObjectContext();
+export default function ObjectForm({
+  editingObject,
+  clearEditing,
+}: {
+  editingObject?: ObjectType | null;
+  clearEditing?: () => void;
+}) {
+  const { addObject, editObject } = useObjectContext();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [type, setType] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
+
+  // Load data when editing an object
+  useEffect(() => {
+    if (editingObject) {
+      setName(editingObject.name);
+      setDescription(editingObject.description);
+      setType(editingObject.type);
+      setIsEditing(true);
+    } else {
+      setName("");
+      setDescription("");
+      setType("");
+      setIsEditing(false);
+    }
+  }, [editingObject]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    addObject({
-      id: Date.now().toString(),
-      name,
-      description,
-      type,
-    });
+    if (!name || !description || !type)
+      return alert("All fields are required!");
+
+    if (isEditing && editingObject) {
+      editObject({ id: editingObject.id, name, description, type });
+      clearEditing?.(); // Close modal after editing
+    } else {
+      addObject({
+        id: Date.now().toString(),
+        name,
+        description,
+        type,
+      });
+    }
 
     setName("");
     setDescription("");
     setType("");
+    setIsEditing(false);
   };
 
   console.log(name);
@@ -52,7 +83,14 @@ export default function ObjectForm() {
         <option value='Human'>Human</option>
       </select>
 
-      <button type='submit'>Add Object</button>
+      <button type='submit' className='submit-btn'>
+        {isEditing ? "Update Object" : "Add Object"}
+      </button>
+      {isEditing && (
+        <button onClick={clearEditing} className='cancel-btn'>
+          Cancel
+        </button>
+      )}
     </form>
   );
 }

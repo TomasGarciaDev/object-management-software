@@ -12,6 +12,7 @@ interface ObjectContextType {
   objects: ObjectType[];
   addObject: (obj: ObjectType) => void;
   deleteObject: (id: string) => void;
+  editObject: (obj: ObjectType) => void;
 }
 
 // Create context
@@ -35,13 +36,20 @@ export const ObjectProvider = ({ children }: { children: React.ReactNode }) => {
     setObjects([...objects, obj]);
   };
 
+  // Delete objects
   const deleteObject = (id: string) => {
     setObjects(objects.filter((obj) => obj.id !== id));
   };
 
-  // Delete objects
+  // Edit objects
+  const editObject = (updated: ObjectType) => {
+    setObjects(objects.map((obj) => (obj.id === updated.id ? updated : obj)));
+  };
+
   return (
-    <ObjectContext.Provider value={{ objects, addObject, deleteObject }}>
+    <ObjectContext.Provider
+      value={{ objects, addObject, deleteObject, editObject }}
+    >
       {children}
     </ObjectContext.Provider>
   );

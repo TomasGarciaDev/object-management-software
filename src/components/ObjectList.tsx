@@ -2,11 +2,14 @@ import { useState } from "react";
 import { useObjectContext, ObjectType } from "../context/ObjectContext";
 import Modal from "./Modal";
 import ObjectDetails from "./ObjectDetails";
+import ObjectForm from "./ObjectForm";
 
 export default function ObjectList() {
   const { objects, deleteObject } = useObjectContext();
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
   const [selectedObject, setSelectedObject] = useState<ObjectType | null>(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editingObject, setEditingObject] = useState<ObjectType | null>(null);
 
   return (
     <div className='container'>
@@ -28,6 +31,16 @@ export default function ObjectList() {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
+                  setEditingObject(obj);
+                  setIsEditModalOpen(true);
+                }}
+                className='button warning'
+              >
+                Edit
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
                   deleteObject(obj.id);
                 }}
                 className='button danger'
@@ -38,6 +51,21 @@ export default function ObjectList() {
           </li>
         ))}
       </ul>
+
+      {/* Edit Object Modal*/}
+      <Modal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        title='Edit Object'
+      >
+        <ObjectForm
+          editingObject={editingObject}
+          clearEditing={() => {
+            setEditingObject(null);
+            setIsEditModalOpen(false);
+          }}
+        ></ObjectForm>
+      </Modal>
 
       {/* Object Details Modal */}
       <Modal

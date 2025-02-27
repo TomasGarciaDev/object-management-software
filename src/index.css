@@ -2,6 +2,7 @@
 :root {
   /* Color Palette */
   --color-danger: #ef476f;
+  --color-warning: #f8961e;
 
   /* Neutral Colors */
   --color-background: #f8f9fa;
@@ -229,4 +230,17 @@ button {
 
 .details-paragraph {
   padding: var(--space-sm) 0;
+}
+
+.button.warning {
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-warning);
+  color: white;
+  min-width: 80px;
+}
+
+.button.warning:hover {
+  background-color: #e67e22;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }

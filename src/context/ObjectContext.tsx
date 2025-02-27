@@ -5,6 +5,7 @@ export type ObjectType = {
   id: string;
   name: string;
   description: string;
+  linkObjs: ObjectType[];
   type: string;
 };
 
@@ -13,6 +14,7 @@ interface ObjectContextType {
   addObject: (obj: ObjectType) => void;
   deleteObject: (id: string) => void;
   editObject: (obj: ObjectType) => void;
+  linkObjects: (obj: ObjectType) => void; // Expose linkObjects function
 }
 
 // Create context
@@ -33,7 +35,12 @@ export const ObjectProvider = ({ children }: { children: React.ReactNode }) => {
 
   // CRUD functions
   const addObject = (obj: ObjectType) => {
-    setObjects([...objects, obj]);
+    // Ensure linkIds is always an array
+    const newObj = {
+      ...obj,
+      linkIds: obj.linkObjs || [],
+    };
+    setObjects([...objects, newObj]);
   };
 
   // Delete objects
@@ -43,12 +50,22 @@ export const ObjectProvider = ({ children }: { children: React.ReactNode }) => {
 
   // Edit objects
   const editObject = (updated: ObjectType) => {
-    setObjects(objects.map((obj) => (obj.id === updated.id ? updated : obj)));
+    // Ensure linkIds is always an array
+    const updatedObj = {
+      ...updated,
+      linkIds: updated.linkObjs || [],
+    };
+    setObjects(
+      objects.map((obj) => (obj.id === updated.id ? updatedObj : obj))
+    );
   };
+
+  const linkObjects = (obj: ObjectType) =>
+    setObjects([...objects, { ...obj, linkObjs: obj.linkObjs || [] }]);
 
   return (
     <ObjectContext.Provider
-      value={{ objects, addObject, deleteObject, editObject }}
+      value={{ objects, addObject, deleteObject, editObject, linkObjects }}
     >
       {children}
     </ObjectContext.Provider>

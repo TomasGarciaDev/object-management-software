@@ -16,6 +16,16 @@ export default function ObjectDetails({ object }: ObjectDetailsProps) {
       <p className='details-paragraph'>
         <strong>Type:</strong> {object.type}
       </p>
+      <p className='details-paragraph'>
+        <strong>Linked Objects:</strong>
+      </p>
+      <ul>
+        {object.linkObjs?.length ? (
+          object.linkObjs.map((item) => <li key={item.id}>{item.name}</li>)
+        ) : (
+          <li>No linked objects</li>
+        )}
+      </ul>
     </div>
   );
 }

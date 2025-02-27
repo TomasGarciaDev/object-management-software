@@ -8,22 +8,27 @@ export default function ObjectForm({
   editingObject?: ObjectType | null;
   clearEditing?: () => void;
 }) {
-  const { addObject, editObject } = useObjectContext();
+  const { addObject, editObject, objects } = useObjectContext();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [linkObjs, setLinkObjs] = useState<ObjectType[]>([]);
   const [type, setType] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+  const [search, setSearch] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   // Load data when editing an object
   useEffect(() => {
     if (editingObject) {
       setName(editingObject.name);
       setDescription(editingObject.description);
+      setLinkObjs(editingObject.linkObjs);
       setType(editingObject.type);
       setIsEditing(true);
     } else {
       setName("");
       setDescription("");
+      setLinkObjs([]);
       setType("");
       setIsEditing(false);
     }
@@ -36,13 +41,14 @@ export default function ObjectForm({
       return alert("All fields are required!");
 
     if (isEditing && editingObject) {
-      editObject({ id: editingObject.id, name, description, type });
+      editObject({ id: editingObject.id, name, description, type, linkObjs });
       clearEditing?.(); // Close modal after editing
     } else {
       addObject({
         id: Date.now().toString(),
         name,
         description,
+        linkObjs,
         type,
       });
     }
@@ -50,10 +56,25 @@ export default function ObjectForm({
     setName("");
     setDescription("");
     setType("");
+    setLinkObjs([]);
     setIsEditing(false);
   };
 
-  console.log(name);
+  const filteredObjects = objects.filter(
+    (obj) =>
+      obj.name.toLowerCase().includes(search.toLowerCase()) ||
+      obj.description.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const handleSelectObject = (obj: ObjectType) => {
+    setLinkObjs([...(linkObjs || []), obj]);
+    setSearch(obj.name); // Fill input with selected object
+    setShowSuggestions(false); // Hide suggestions
+    setSearch("");
+  };
+
+  console.log("FILTERED", filteredObjects);
+  console.log("SHOW", showSuggestions);
   return (
     <form onSubmit={handleSubmit} className='form'>
       <label htmlFor='Name'>Name</label>
@@ -64,7 +85,6 @@ export default function ObjectForm({
         onChange={(e) => setName(e.target.value)}
         className='input'
       />
-
       <label htmlFor='Description'>Description</label>
       <input
         type='text'
@@ -73,6 +93,38 @@ export default function ObjectForm({
         onChange={(e) => setDescription(e.target.value)}
         className='input'
       />
+      <div>
+        <label htmlFor='Link Object'>Link Object</label>
+        <input
+          type='text'
+          placeholder='Search objects...'
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setShowSuggestions(e.target.value.length > 0); // Show dropdown if input is not empty
+          }}
+          className='input'
+        />
+        {showSuggestions && filteredObjects.length > 0 && (
+          <ul className='autocomplete-list'>
+            {filteredObjects.map((obj) => (
+              <li
+                key={obj.id}
+                // className='autocomplete-item'
+                onClick={() => handleSelectObject(obj)}
+                className='autocomplete-item'
+              >
+                {obj.name} - {obj.type}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <ul>
+        {(linkObjs || []).map((item) => {
+          return <li key={item.id}>{item.name}</li>;
+        })}
+      </ul>
 
       <label htmlFor='Type'>Type</label>
       <select value={type} onChange={(e) => setType(e.target.value)}>
@@ -82,7 +134,6 @@ export default function ObjectForm({
         <option value='Server'>Server</option>
         <option value='Human'>Human</option>
       </select>
-
       <button type='submit'>
         {isEditing ? "Update Object" : "Add Object"}
       </button>

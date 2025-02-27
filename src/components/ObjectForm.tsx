@@ -83,7 +83,7 @@ export default function ObjectForm({
         <option value='Human'>Human</option>
       </select>
 
-      <button type='submit' className='submit-btn'>
+      <button type='submit'>
         {isEditing ? "Update Object" : "Add Object"}
       </button>
       {isEditing && (

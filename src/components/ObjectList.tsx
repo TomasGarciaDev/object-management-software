@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useObjectContext, ObjectType } from "../context/ObjectContext";
 import Modal from "./Modal";
+import ObjectDetails from "./ObjectDetails";
 
 export default function ObjectList() {
   const { objects, deleteObject } = useObjectContext();
@@ -42,12 +43,9 @@ export default function ObjectList() {
       <Modal
         isOpen={isDetailsModalOpen}
         onClose={() => setIsDetailsModalOpen(false)}
+        title={"Object Details"}
       >
-        {selectedObject && (
-          <div>
-            <h2>{selectedObject.name}</h2>
-          </div>
-        )}
+        {selectedObject && <ObjectDetails object={selectedObject} />}
       </Modal>
     </div>
   );

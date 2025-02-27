@@ -4,9 +4,15 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  title?: string;
 }
 
-export default function Modal({ isOpen, onClose, children }: ModalProps) {
+export default function Modal({
+  isOpen,
+  onClose,
+  children,
+  title,
+}: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -37,7 +43,7 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
       onClick={onClose}
       role='dialog'
       aria-modal='true'
-      aria-label='Modal'
+      aria-label={title || "Modal"}
     >
       <div
         className='modal-content'
@@ -45,10 +51,17 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
         ref={modalRef}
         tabIndex={-1}
       >
-        <button onClick={onClose} aria-label='Close modal'>
-          ✖
-        </button>
-        {children}
+        <div className='modal-header'>
+          {title && <h2>{title}</h2>}
+          <button
+            className='modal-close'
+            onClick={onClose}
+            aria-label='Close modal'
+          >
+            ✖
+          </button>
+        </div>
+        <div>{children}</div>
       </div>
     </div>
   );

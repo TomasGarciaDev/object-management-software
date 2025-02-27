@@ -204,3 +204,29 @@ button {
   box-shadow: var(--shadow-lg);
   animation: slideIn 0.3s ease;
 }
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--color-text-light);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.modal-close:hover {
+  color: var(--color-danger);
+}
+
+.details-paragraph {
+  padding: var(--space-sm) 0;
+}

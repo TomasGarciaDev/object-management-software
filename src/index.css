@@ -93,7 +93,6 @@ select {
   border-radius: var(--border-radius-sm);
   font-family: var(--font-family);
   font-size: var(--font-size-md);
-  margin-bottom: var(--space-md);
   transition: border-color var(--transition-fast),
     box-shadow var(--transition-fast);
 }
@@ -243,4 +242,28 @@ button {
   background-color: #e67e22;
   transform: translateY(-2px);
   box-shadow: var(--shadow-sm);
+}
+
+.autocomplete-list {
+  position: absolute;
+  background: white;
+
+  list-style: none;
+  z-index: 100;
+  top: auto;
+
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+}
+
+.autocomplete-item {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.autocomplete-item:hover {
+  background: lightgray;
 }

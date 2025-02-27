@@ -44,9 +44,13 @@ export default function ObjectList() {
 
       {/* Autocomplete Suggestions Dropdown */}
       {showSuggestions && filteredObjects.length > 0 && (
-        <ul>
+        <ul className='autocomplete-list'>
           {filteredObjects.map((obj) => (
-            <li key={obj.id} onClick={() => handleSelectedObject(obj)}>
+            <li
+              key={obj.id}
+              onClick={() => handleSelectedObject(obj)}
+              className='autocomplete-item'
+            >
               {obj.name} - {obj.type}
             </li>
           ))}

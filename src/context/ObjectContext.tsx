@@ -11,6 +11,7 @@ type ObjectType = {
 interface ObjectContextType {
   objects: ObjectType[];
   addObject: (obj: ObjectType) => void;
+  deleteObject: (id: string) => void;
 }
 
 // Create context
@@ -33,8 +34,14 @@ export const ObjectProvider = ({ children }: { children: React.ReactNode }) => {
   const addObject = (obj: ObjectType) => {
     setObjects([...objects, obj]);
   };
+
+  const deleteObject = (id: string) => {
+    setObjects(objects.filter((obj) => obj.id !== id));
+  };
+
+  // Delete objects
   return (
-    <ObjectContext.Provider value={{ objects, addObject }}>
+    <ObjectContext.Provider value={{ objects, addObject, deleteObject }}>
       {children}
     </ObjectContext.Provider>
   );

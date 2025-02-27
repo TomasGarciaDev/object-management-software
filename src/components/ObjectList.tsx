@@ -1,7 +1,7 @@
 import { useObjectContext } from "../context/ObjectContext";
 
 export default function ObjectList() {
-  const { objects } = useObjectContext();
+  const { objects, deleteObject } = useObjectContext();
 
   return (
     <div className='container'>
@@ -11,6 +11,16 @@ export default function ObjectList() {
             <div className='object-list-item-content'>
               <div className='object-list-item-name'>Name: {obj.name}</div>
               <div className='object-list-item-type'>Type: {obj.type}</div>
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  deleteObject(obj.id);
+                }}
+                className='button danger'
+              >
+                Delete
+              </button>
             </div>
           </li>
         ))}

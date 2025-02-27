@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
 // Define object type
-type ObjectType = {
+export type ObjectType = {
   id: string;
   name: string;
   description: string;

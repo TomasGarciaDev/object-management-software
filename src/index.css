@@ -23,6 +23,7 @@
   --border-radius-lg: 12px;
 
   /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   /* Transitions */
@@ -115,5 +116,34 @@ button {
   border-radius: var(--border-radius-md);
   font-family: var(--font-family);
   font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+/* Container styles */
+.container {
+  width: 100%;
+  padding: var(--space-md);
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.object-list-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.object-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md);
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-md);
+  cursor: pointer;
   transition: all var(--transition-fast);
 }

@@ -110,7 +110,6 @@ export default function ObjectForm({
             {filteredObjects.map((obj) => (
               <li
                 key={obj.id}
-                // className='autocomplete-item'
                 onClick={() => handleSelectObject(obj)}
                 className='autocomplete-item'
               >
@@ -120,9 +119,13 @@ export default function ObjectForm({
           </ul>
         )}
       </div>
-      <ul>
+      <ul className='linked-object-list'>
         {(linkObjs || []).map((item) => {
-          return <li key={item.id}>{item.name}</li>;
+          return (
+            <li key={item.id} className='linked-object-list-item'>
+              - {item.name}
+            </li>
+          );
         })}
       </ul>
 

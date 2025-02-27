@@ -247,11 +247,9 @@ button {
 .autocomplete-list {
   position: absolute;
   background: white;
-
   list-style: none;
   z-index: 100;
   top: auto;
-
   padding: var(--space-sm) var(--space-md);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-sm);
@@ -266,4 +264,15 @@ button {
 
 .autocomplete-item:hover {
   background: lightgray;
+}
+
+.linked-object-list {
+  background: white;
+  list-style: none;
+  z-index: 100;
+  top: auto;
+}
+
+.linked-object-list-item {
+  padding: var(--space-sm) var(--space-sm);
 }

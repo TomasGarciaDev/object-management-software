@@ -20,6 +20,14 @@ export default function ObjectList() {
       obj.description.toLowerCase().includes(search.toLowerCase())
   );
 
+  // handle selecting an object from autocomplete suggestions
+  const handleSelectedObject = (obj: ObjectType) => {
+    setSelectedObject(obj);
+    setIsDetailsModalOpen(true);
+    setSearch(obj.name); // Fill input with selected object
+    setShowSuggestions(false); // Hide suggestion
+  };
+
   return (
     <div className='container'>
       {/* Search Input with auto-complete */}
@@ -38,7 +46,7 @@ export default function ObjectList() {
       {showSuggestions && filteredObjects.length > 0 && (
         <ul>
           {filteredObjects.map((obj) => (
-            <li key={obj.id}>
+            <li key={obj.id} onClick={() => handleSelectedObject(obj)}>
               {obj.name} - {obj.type}
             </li>
           ))}

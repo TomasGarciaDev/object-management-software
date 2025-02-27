@@ -11,7 +11,9 @@ export default function ObjectList() {
             <div className='object-list-item-content'>
               <div className='object-list-item-name'>Name: {obj.name}</div>
               <div className='object-list-item-type'>Type: {obj.type}</div>
+            </div>
 
+            <div className='object-list-item-actions'>
               <button
                 onClick={(e) => {
                   e.stopPropagation();

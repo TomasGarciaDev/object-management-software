@@ -147,3 +147,18 @@ button {
   cursor: pointer;
   transition: all var(--transition-fast);
 }
+
+.object-list-item-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.object-list-item-name {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.object-list-item-type {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+}

@@ -1,10 +1,12 @@
 export default function ObjectForm() {
   return (
-    <form>
+    <form className='form'>
       <label htmlFor='Name'>Name</label>
-      <input type='text' placeholder='Name' />
+      <input type='text' placeholder='Name' className='input' />
+
       <label htmlFor='Description'>Description</label>
-      <input type='text' placeholder='Description' />
+      <input type='text' placeholder='Description' className='input' />
+
       <label htmlFor='Type'>Type</label>
       <select>
         <option value=''>Select a type</option>

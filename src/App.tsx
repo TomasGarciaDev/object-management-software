@@ -3,7 +3,7 @@ import ObjectForm from "./components/ObjectForm";
 
 function App() {
   return (
-    <div className='App'>
+    <div className='app'>
       <header className='App-header'>
         <ObjectForm />
       </header>

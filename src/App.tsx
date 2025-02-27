@@ -1,13 +1,17 @@
 import React from "react";
 import ObjectForm from "./components/ObjectForm";
+import { ObjectProvider } from "./context/ObjectContext";
+import "./index.css";
 
 function App() {
   return (
-    <div className='app'>
-      <header className='App-header'>
-        <ObjectForm />
-      </header>
-    </div>
+    <ObjectProvider>
+      <div className='app'>
+        <header className='App-header'>
+          <ObjectForm />
+        </header>
+      </div>
+    </ObjectProvider>
   );
 }
 

@@ -73,8 +73,10 @@ export default function ObjectForm({
     setSearch("");
   };
 
-  console.log("FILTERED", filteredObjects);
-  console.log("SHOW", showSuggestions);
+  const handleUnlink = (id: string) => {
+    const filterdObjs = linkObjs.filter((obj) => obj.id !== id);
+    setLinkObjs(filterdObjs);
+  };
   return (
     <form onSubmit={handleSubmit} className='form'>
       <label htmlFor='Name'>Name</label>
@@ -93,6 +95,7 @@ export default function ObjectForm({
         onChange={(e) => setDescription(e.target.value)}
         className='input'
       />
+
       <div>
         <label htmlFor='Link Object'>Link Object</label>
         <input
@@ -105,6 +108,7 @@ export default function ObjectForm({
           }}
           className='input'
         />
+
         {showSuggestions && filteredObjects.length > 0 && (
           <ul className='autocomplete-list'>
             {filteredObjects.map((obj) => (
@@ -119,11 +123,18 @@ export default function ObjectForm({
           </ul>
         )}
       </div>
+
       <ul className='linked-object-list'>
         {(linkObjs || []).map((item) => {
           return (
             <li key={item.id} className='linked-object-list-item'>
               - {item.name}
+              <button
+                onClick={() => handleUnlink(item.id)}
+                className='modal-close'
+              >
+                x
+              </button>
             </li>
           );
         })}

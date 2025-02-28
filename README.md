@@ -72,7 +72,7 @@ This app is fully deployed on Amazon AWS S3 [here](http://228495507529-object-ma
 
 ### Managing Objects
 
-- **View Details**: Click on an object in the list to view its details
+- **View Details**: Click on an object _name_ in the list to view its details
 - **Edit**: Click the "Edit" button on an object to modify its properties
 - **Delete**: Click the "Delete" button to remove an object
 - **Search**: Use the search box to filter objects by name or description
@@ -84,6 +84,19 @@ This app is fully deployed on Amazon AWS S3 [here](http://228495507529-object-ma
 3. Select an object from the dropdown to link it
 4. Linked objects will appear in the list below the search field
 5. To remove a link, click the "x" button next to the linked object
+
+## Deployment & Platform Choice
+
+For deployment, I selected **Amazon AWS S3** as it provides a **scalable, reliable, and cost-effective** solution for hosting a static React application. AWS S3 offers:
+
+- **High availability** with built-in redundancy.
+- **Seamless integration with CloudFront** for fast global content delivery.
+- **Low cost** compared to managed frontend hosting.
+- **Security & fine-grained access control** with IAM policies.
+
+At **Zolar.de**, we leveraged **AWS with CI/CD pipelines** for efficient cloud-based deployments, ensuring scalability and automation. This experience has made me comfortable working with AWS for hosting static applications while ensuring smooth development workflows.
+
+For the **GUI**, I followed **React with Context API**, as it ensures maintainability, scalability, and a clean state management approach while avoiding unnecessary dependencies. I also prioritized usability, implementing an intuitive UI with autocomplete search, modals for editing, and object relations management to enhance the user experience.
 
 ## Project Structure
 

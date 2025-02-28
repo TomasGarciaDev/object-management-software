@@ -1,46 +1,112 @@
-# Getting Started with Create React App
+# Object Management Software
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React TypeScript application for creating, managing, and visualizing objects with their relationships.
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+This application allows users to manage different types of objects (Desk, Computer, Server, Human) and define relationships between them. It provides a simple and intuitive interface for creating, editing, viewing, and deleting objects, as well as establishing connections between related objects.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Object Management**: Create, view, edit, and delete objects
+- **Object Types**: Support for different object types (Desk, Computer, Server, Human)
+- **Relationship Management**: Link objects to establish relationships
+- **Search & Filter**: Find objects by name or description
+- **Persistent Storage**: Data is saved in the browser's localStorage
+- **Responsive UI**: Clean and intuitive user interface
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (v14 or later)
+- npm or yarn
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```
+   git clone <repository-url>
+   cd object-management-software
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Install dependencies:
 
-### `npm run eject`
+   ```
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   or
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```
+   yarn install
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+3. Start the development server:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   ```
+   npm start
+   ```
 
-## Learn More
+   or
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   ```
+   yarn start
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Open your browser and navigate to `http://localhost:3000`
+
+## Usage
+
+This app is fully deployed on Amazon AWS S3 [here](http://228495507529-object-management-software.s3-website-us-east-1.amazonaws.com/)
+
+### Creating Objects
+
+1. Fill in the "Add New Object" form with:
+   - Name
+   - Description
+   - Type (select from dropdown)
+   - Optionally link to other existing objects
+2. Click "Add Object" to create the new object
+
+### Managing Objects
+
+- **View Details**: Click on an object in the list to view its details
+- **Edit**: Click the "Edit" button on an object to modify its properties
+- **Delete**: Click the "Delete" button to remove an object
+- **Search**: Use the search box to filter objects by name or description
+
+### Linking Objects
+
+1. When creating or editing an object, use the "Link Object" search field
+2. Start typing to see matching objects
+3. Select an object from the dropdown to link it
+4. Linked objects will appear in the list below the search field
+5. To remove a link, click the "x" button next to the linked object
+
+## Project Structure
+
+- `src/App.tsx`: Main application component
+- `src/context/ObjectContext.tsx`: State management using React Context API
+- `src/components/`:
+  - `ObjectList.tsx`: Displays the list of objects with search and actions
+  - `ObjectForm.tsx`: Form for creating and editing objects
+  - `ObjectDetails.tsx`: Displays detailed information about an object
+  - `Modal.tsx`: Reusable modal component for details and forms
+
+## Data Persistence
+
+The application uses the browser's localStorage to persist data between sessions. All objects and their relationships are automatically saved whenever changes are made.
+
+## Technologies Used
+
+- React
+- TypeScript
+- React Context API (for state management)
+- localStorage (for data persistence)
+- CSS (for styling)
+
+## License
+
+[MIT License](LICENSE)

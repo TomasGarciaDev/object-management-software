@@ -99,6 +99,7 @@ export default function ObjectForm({
 
       <div>
         <label htmlFor='Link Object'>Link Object</label>
+        <div style={{ height: "1rem" }}></div>
         <input
           type='text'
           placeholder='Search objects...'

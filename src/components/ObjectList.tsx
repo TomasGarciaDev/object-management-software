@@ -57,6 +57,8 @@ export default function ObjectList() {
         </ul>
       )}
 
+      <div style={{ height: "1rem" }}></div>
+
       {/* Object List */}
       {filteredObjects.length > 0 ? (
         <ul className='object-list-items'>

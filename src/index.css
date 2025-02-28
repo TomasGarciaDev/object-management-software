@@ -317,7 +317,7 @@ button.primary:hover {
 .linked-object-list {
   background: white;
   list-style: none;
-  z-index: 100;
+  z-index: 50;
   top: auto;
 }
 

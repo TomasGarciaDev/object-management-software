@@ -77,6 +77,7 @@ export default function ObjectForm({
     const filterdObjs = linkObjs.filter((obj) => obj.id !== id);
     setLinkObjs(filterdObjs);
   };
+
   return (
     <form onSubmit={handleSubmit} className='form'>
       <label htmlFor='Name'>Name</label>

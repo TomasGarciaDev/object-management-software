@@ -14,13 +14,14 @@ function App() {
             Create, edit, and manage objects with their relationships
           </p>
         </header>
-        <main>
-          <section>
+
+        <main className='app-content'>
+          <section className='form-section'>
             <h2>Add New Object</h2>
             <ObjectForm />
           </section>
 
-          <section>
+          <section className='list-section'>
             <h2>Object List</h2>
             <ObjectList />
           </section>

@@ -23,6 +23,7 @@
     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   --font-size-sm: 0.875rem;
   --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
   --font-size-xxl: 2.5rem;
 
   /* Borders */
@@ -47,12 +48,20 @@
 }
 
 body {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--space-md);
-  display: flex;
-  flex-direction: column;
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  line-height: 1.5;
+  color: var(--color-text);
   background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2 {
+  margin-bottom: var(--space-md);
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 h1 {
@@ -66,10 +75,10 @@ h1 {
 .app {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: var(--space-md);
   display: flex;
   flex-direction: column;
-  background-color: #f8f9fa;
+  background-color: var(--color-background);
 }
 
 /* App Header*/
@@ -306,4 +315,20 @@ button {
   color: var(--color-text-light);
   text-align: center;
   font-size: var(--font-size-lg);
+}
+
+/* Main Content */
+.app-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+/* Form and List Sections */
+.form-section,
+.list-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
 }

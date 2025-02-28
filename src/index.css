@@ -108,10 +108,6 @@ form {
   transition: box-shadow var(--transition-normal);
 }
 
-form:hover {
-  box-shadow: var(--shadow-lg);
-}
-
 input,
 select {
   padding: var(--space-sm) var(--space-md);
@@ -158,14 +154,15 @@ button {
   transition: all var(--transition-fast);
 }
 
-.button {
-  cursor: pointer;
-  padding: var(--space-sm) var(--space-md);
-  border: none;
-  border-radius: var(--border-radius-md);
-  font-family: var(--font-family);
-  font-weight: 500;
-  transition: all var(--transition-fast);
+button.primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+button.primary:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 /* Container styles */
@@ -216,6 +213,12 @@ button {
   background-color: var(--color-danger);
   color: white;
   min-width: 80px;
+}
+
+.button.danger:hover {
+  background-color: #d64161;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
 
 .object-list-item-actions {

@@ -149,14 +149,11 @@ export default function ObjectForm({
         <option value='Server'>Server</option>
         <option value='Human'>Human</option>
       </select>
-      <button type='submit'>
+
+      <button type='submit' className='primary'>
         {isEditing ? "Update Object" : "Add Object"}
       </button>
-      {isEditing && (
-        <button onClick={clearEditing} className='cancel-btn'>
-          Cancel
-        </button>
-      )}
+      {isEditing && <button onClick={clearEditing}>Cancel</button>}
     </form>
   );
 }
